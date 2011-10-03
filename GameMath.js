@@ -4,18 +4,15 @@ GameMath = {
 		this.y = y;
 
 		this.plus = function(one,two){
-			if(arguments[1]){
+			if(two!=undefined){
 				return new Vector2f(this.x + one,this.y + two);
 			}
-			else if(arguments[0]){
-				return this.plus(one.x,two.y)
-			}
 			else{
-				console.log(arguments);
+				return this.plus(one.x,two.y)
 			}
 		}
 		this.plusEquals = function(one,two){
-			if(arguments[1]){
+			if(two!=undefined){
 				this.x += one;
 				this.y += two;
 			}
@@ -25,7 +22,7 @@ GameMath = {
 		}
 
 		this.minus = function(one,two){
-			if(arguments[1]){
+			if(two!=undefined){
 				return new Vector2f(this.x - one,this.y - two);
 			}
 			else{
@@ -33,7 +30,7 @@ GameMath = {
 			}
 		}
 		this.minusEquals = function(one,two){
-			if(arguments[1]){
+			if(two!=undefined){
 				this.x -= one;
 				this.y -= two;
 			}
@@ -45,7 +42,7 @@ GameMath = {
 		
 
 		this.times = function(one,two){
-			if(arguments[1]){
+			if(two!=undefined){
 				return new Vector2f(this.x * one,this.y * two);
 			}
 			else{
@@ -96,6 +93,19 @@ GameMath = {
 
 			this.x /= magnitude;
 			this.y /= magnitude;
+		}
+	},
+	Random:{
+		randDouble: function(){
+			return Math.random();
+		},
+		randInt:function(limit1,limit2){
+			if(limit2!=undefined){
+				return randInt(limit2-limit1)+limit1;
+			}
+			else{
+				return Math.floor(Math.random()*(limit1+1));
+			}
 		}
 	}
 }
