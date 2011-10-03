@@ -30,17 +30,68 @@ function Pane(canvasId){
 		ctx.fillstyle = 5;
 	}
 
+	this.setFillColor = function(color){
+		if(color!=undefined){
+			ctx.fillStyle = color;
+		}
+		else{
+			ctx.fillStyle="black"
+		}
+	}
+	this.setStrokeColor = function(color){
+		if(color!=undefined){
+			ctx.strokeStyle = color;
+		}
+		else{
+			ctx.strokeStyle="black"
+		}
+	}
+
 	this.drawRectFill = function(x,y,width,height,color){
-		ctx.fillStyle = color;
+		this.setFillColor(color);
+
 		ctx.fillRect(x,y,width,height);
 
 		this.resetColor();
 	}
+	this.drawRectStroke = function(x, y, width, height, color, lineWidth){
+		this.setStrokeColor(color);
 
-	this.drawRectBorder = function(x, y, width, height, color, lineWidth){
-		ctx.fillStyle = color;
 		ctx.lineWidth = lineWidth;
 		ctx.strokeRect(x,y,width,height);
+
+		this.resetColor();
+	}
+
+	this.drawCircleFill = function(x,y,radius,color){
+		this.setFillColor(color);
+
+		ctx.beginPath();
+		ctx.arc(x,y,radius,0,Math.PI*2,true);
+		ctx.fill();
+		ctx.closePath();
+
+		this.resetColor();
+	}
+	this.drawCircleStroke = function(x,y,radius,color){
+		this.setStrokeColor(color);
+
+		ctx.beginPath();
+		ctx.arc(x,y,radius,0,Math.PI*2,true);
+		ctx.stroke();
+		ctx.closePath();
+
+		this.resetColor();
+	}
+
+	this.drawLine = function(x1,y1,x2,y2,color){
+		this.setStrokeColor(color);
+
+		ctx.beginPath();
+		ctx.moveTo(x1,y1);
+		ctx.lineTo(x2,y2);
+		ctx.closePath();
+		ctx.stroke();
 
 		this.resetColor();
 	}

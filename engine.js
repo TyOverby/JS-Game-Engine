@@ -35,7 +35,5 @@ function Engine(game,fps){
 			game.render();
 			prevTime = curTime;
 		}
-
-		
 	}
 }
