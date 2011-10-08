@@ -5,10 +5,10 @@ GameMath = {
 
 		this.plus = function(one,two){
 			if(two!=undefined){
-				return new Vector2f(this.x + one,this.y + two);
+				return new GameMath.Vector2f(this.x + one,this.y + two);
 			}
 			else{
-				return this.plus(one.x,two.y)
+				return this.plus(one.x,one.y)
 			}
 		}
 		this.plusEquals = function(one,two){
@@ -17,16 +17,16 @@ GameMath = {
 				this.y += two;
 			}
 			else{
-				this.plusEquals(one.x,two.y)
+				this.plusEquals(one.x,one.y)
 			}
 		}
 
 		this.minus = function(one,two){
 			if(two!=undefined){
-				return new Vector2f(this.x - one,this.y - two);
+				return new GameMath.Vector2f(this.x - one,this.y - two);
 			}
 			else{
-				return this.minus(one.x,two.y)
+				return this.minus(one.x,one.y)
 			}
 		}
 		this.minusEquals = function(one,two){
@@ -35,7 +35,7 @@ GameMath = {
 				this.y -= two;
 			}
 			else{
-				this.minusEquals(one.x,two.y)
+				this.minusEquals(one.x,one.y)
 			}
 		}
 
@@ -43,14 +43,14 @@ GameMath = {
 
 		this.times = function(one,two){
 			if(two!=undefined){
-				return new Vector2f(this.x * one,this.y * two);
+				return new GameMath.Vector2f(this.x * one,this.y * two);
 			}
 			else{
-				return new Vector2f(this.x * one, this.y * one);
+				return new GameMath.Vector2f(this.x * one, this.y * one);
 			}
 		}
 		this.timesEquals = function(one,two){
-			if(arguments[1]){
+			if(two!=undefined){
 				this.x *= one;
 				this.y *= two;
 			}
@@ -62,16 +62,16 @@ GameMath = {
 
 
 		this.divideBy = function(one,two){
-			if(arguments[1]){
-				return new Vector2f(this.x / one,this.y / two);
+			if(two!=undefined){
+				return new GameMath.Vector2f(this.x / one,this.y / two);
 			}
 			else{
-				return new Vector2f(this.x / one, this.y / one);
+				return new GameMath.Vector2f(this.x / one, this.y / one);
 			}
 		}
 
 		this.divideEquals = function(one,two){
-			if(arguments[1]){
+			if(two!=undefined){
 				this.x /= one;
 				this.y /= two;
 			}
