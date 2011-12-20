@@ -6,11 +6,21 @@ function Pane(canvasId){
 	var ctx = canvas.getContext("2d");
 
 	this.getWidth = function(){
-		return canvas.width;
+		return ctx.width;
 	}
 
 	this.getHeight = function(){
-		return canvas.height;
+		return ctx.height;
+	}
+
+	this.setSize = function(width,height){
+		ctx.width = width;
+		ctx.height = height;
+
+		canvas.width = width;
+		canvas.height = height;
+
+		console.log(width+" "+height)
 	}
 
 	this.getContext = function(type){
@@ -22,6 +32,9 @@ function Pane(canvasId){
 		}
 	}
 
+	this.clearRect = function(x,y,width,height){
+		ctx.clearRect(x,y,width,height);
+	}
 
 	this.resetColor = function(){
 		ctx.fillStyle = "cyan";

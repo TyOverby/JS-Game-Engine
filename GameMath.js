@@ -96,6 +96,7 @@ GameMath = {
 
 			this.x /= magnitude;
 			this.y /= magnitude;
+			return this;
 		}
 		
 		this.equals = function(other){
@@ -109,8 +110,13 @@ GameMath = {
 		}
 	},
 	Random:{
-		randDouble: function(){
-			return Math.random();
+		randDouble: function(limit1,limit2){
+			if(limit2 != undefined){
+				return GameMath.Random.randDouble(limit2-limit1)+limit1;
+			}
+			else{
+				return Math.random()*limit1;
+			}
 		},
 		randInt:function(limit1,limit2){
 			if(limit2!=undefined){
