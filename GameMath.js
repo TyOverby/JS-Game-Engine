@@ -3,6 +3,9 @@ GameMath = {
 		this.x = x;
 		this.y = y;
 
+		this.clone = function(){
+			return new GameMath.Vector2f(this.x,this.y);
+		}
 		this.plus = function(one,two){
 			if(two!=undefined){
 				return new GameMath.Vector2f(this.x + one,this.y + two);
@@ -94,6 +97,16 @@ GameMath = {
 			this.x /= magnitude;
 			this.y /= magnitude;
 		}
+		
+		this.equals = function(other){
+			if(this.x!=other.x){
+				return false;
+			}
+			if(this.y!=other.y){
+				return false;
+			}
+			return true;
+		}
 	},
 	Random:{
 		randDouble: function(){
@@ -101,7 +114,7 @@ GameMath = {
 		},
 		randInt:function(limit1,limit2){
 			if(limit2!=undefined){
-				return randInt(limit2-limit1)+limit1;
+				return GameMath.Random.randInt(limit2-limit1)+limit1;
 			}
 			else{
 				return Math.floor(Math.random()*(limit1+1));

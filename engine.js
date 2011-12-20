@@ -20,7 +20,7 @@ function Engine(game,fps){
 	}
 	this.stop = function(message){
 		clearInterval(intervalId);
-		if(message){
+		if(message!=null){
 			console.error(message);
 		}
 	}
@@ -28,12 +28,12 @@ function Engine(game,fps){
 	this.update = function(){
 		var curTime = new Date();
 
-		game.update();
 
 		var diffTime=curTime.valueOf()-prevTime.valueOf();
 		if(diffTime>1000/targetFps){
-			game.render();
+			game.update();
 			prevTime = curTime;
+			game.render();
 		}
 	}
 }
