@@ -1,25 +1,25 @@
-function Engine(game,fps){
+function Engine(game,paneID){
 	var hasRan = false;
 	var game = game;
-	var targetFps = 1000;
+	var targetFps = 60;
 	var prevTime = new Date();
-	
-	if(fps!=undefined&&fps!=null){
-		targetFps = fps;
-	}
 
-	var intervalId;
+    var intervalId = [];
+    pane = document.getElementById(paneID).getContext("2d");
 
 	this.run = function(){
-		//only do the startup if the game has ran before
 		if(!hasRan){
 			game.startup();
 		}
-		intervalId = setInterval(this.update,1);
-		hasRan = true;
+        hasRan = true;
+		intervalId.push(setInterval(this.update,1));
 	}
+
 	this.stop = function(message){
-		clearInterval(intervalId);
+        for(var i=0;i<intervalId.length;i++){
+		    clearInterval(intervalId[i]);
+        }
+
 		if(message!=null){
 			console.error(message);
 		}
@@ -27,13 +27,11 @@ function Engine(game,fps){
 
 	this.update = function(){
 		var curTime = new Date();
-
-
 		var diffTime=curTime.valueOf()-prevTime.valueOf();
 		if(diffTime>1000/targetFps){
-			game.update();
+			game.update(diffTime);
 			prevTime = curTime;
-			game.render();
+			game.render(pane);
 		}
 	}
 }

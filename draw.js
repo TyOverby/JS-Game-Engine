@@ -1,3 +1,30 @@
+CanvasRenderingContext2D.prototype.drawLine = function(p1,p2){
+    this.beginPath();
+    this.moveTo(p1.x,p1.y);
+    this.lineTo(p2.x,p2.y);
+    this.closePath();
+    this.stroke();
+}
+
+
+CanvasRenderingContext2D.prototype.drawVector = function(position, velocity){
+    if(velocity == null || velocity ==undefined){
+        velocity = position;
+        position = new Vector2f(0,0);
+    }
+
+    this.drawLine(position,velocity.plus(position));
+}
+
+CanvasRenderingContext2D.prototype.fillCircle = function(position, radius){
+    this.beginPath();
+    this.arc(position.x,position.y,radius,0,Math.PI*2,true);
+    this.fill();
+    this.closePath();
+}
+
+/*
+
 function Pane(canvasId){
 	var canvas = document.getElementById(canvasId);
 		if(canvas === undefined){
@@ -109,3 +136,4 @@ function Pane(canvasId){
 		this.resetColor();
 	}
 }
+*/
