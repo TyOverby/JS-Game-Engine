@@ -98,6 +98,10 @@ GameMath = {
 			this.y /= magnitude;
 			return this;
 		}
+
+        this.magnitude =function(){
+            return Math.sqrt(this.x*this.x+this.y*this.y);
+        }
 		
 		this.equals = function(other){
 			if(this.x!=other.x){

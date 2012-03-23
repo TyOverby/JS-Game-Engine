@@ -22,9 +22,31 @@ CanvasRenderingContext2D.prototype.fillCircle = function(position, radius){
     this.fill();
     this.closePath();
 }
+CanvasRenderingContext2D.prototype.setSize = function(width,height){
+    this.width = width;
+    this.height = height;
+
+    this.canvas.width = width;
+    this.canvas.height = height;
+}
+
+CanvasRenderingContext2D.prototype.tileBackground = function(image, offset){
+    if(offset==undefined||offset==null){
+        offset = 0;
+    }
+
+    for(var x=0; x<this.width;x+=image.width){
+        for(var y=0; y<this.height;y+=image.height){
+            this.drawImage(image,x+offset,y+offset);
+        }
+    }
+}
+
+CanvasRenderingContext2D.prototype.cover = function(){
+    this.fillRect(0,0,this.width,this.height);
+}
 
 /*
-
 function Pane(canvasId){
 	var canvas = document.getElementById(canvasId);
 		if(canvas === undefined){
